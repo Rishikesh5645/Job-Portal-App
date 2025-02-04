@@ -1,22 +1,29 @@
 import express from "express";
+import {
+  createJobController,
+  deleteJobController,
+  getAllJobController,
+  jobStatsController,
+  updateJobController,
+} from "../controllers/jobsController.js";
 import userAuth from "../middlewares/authMiddleware.js";
-import { createJobController, deleteJobController, getAllJobController, updateJobController} from "../controllers/jobsController.js";
 
-// router object
-const router=express.Router();
+const router = express.Router();
 
-// routes
-// CREATE ROUTE || POST
-router.post("/create-job",userAuth,createJobController);
+//routes
+// CREATE JOB || POST
+router.post("/create-job", userAuth, createJobController);
 
-// GET JOBS || GET
-router.get("/get-job",userAuth,getAllJobController);
+//GET JOBS || GET
+router.get("/get-job", userAuth,getAllJobController);
 
-// UPDATE JOBS || PUT || PATCH
-router.patch("/update-job/:id",userAuth,updateJobController);
+//UPDATE JOBS ||  PATCH
+router.patch("/update-job/:id", userAuth, updateJobController);
 
-// DELETE JOBS || DELETE
-router.delete("/delete-job/:id",deleteJobController);
+//DELETE JOBS || DELETE
+router.delete("/delete-job/:id", userAuth, deleteJobController);
 
-// export
+// JOBS STATS FILTER || GET
+router.get("/job-stats", userAuth, jobStatsController);
+
 export default router;

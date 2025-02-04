@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
+// for validation of email
 import validator from "validator";
+// for password hashing
 import bcrypt from "bcryptjs";
+// used for authentication
 import JWT from "jsonwebtoken";
 
 const userSchema=new mongoose.Schema(
@@ -32,7 +35,7 @@ const userSchema=new mongoose.Schema(
     { timestamps: true }
 );
 
-// middelwares
+// middelwares for password hashing
 userSchema.pre("save", async function () {
   if (!this.isModified) return;
   const salt = await bcrypt.genSalt(10);

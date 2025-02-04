@@ -26,6 +26,7 @@ const jobSchema = new mongoose.Schema(
       default: "Mumbai",
       required: [true, "Work location is required"],
     },
+    // important
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",
